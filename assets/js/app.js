@@ -44,9 +44,16 @@ const gameController = {
 		console.log(letter, i);
 	},
 	checkGuess(letter) {
+		const guessedArr = gameState.guessedLetters;
 		const wordArr = gameState.wordLetters;
+		// Check if letter has already been guessed
+		if (guessedArr.includes(letter)) {
+			gameStatusMessage.innerHTML = `'${letter}' has already been guessed. Try again!`;
+			return;
+		}
 		// Check if letter is in wordLetters array
 		if (!wordArr.includes(letter)) {
+			guessedArr.push(letter);
 			// Update status message, decrement remaining guesses, check for game over
 			gameStatusMessage.innerHTML = `Sorry! There was no '${letter}' in the word. Try again!`;
 			gameState.remainingGuesses--;
@@ -63,11 +70,12 @@ const gameController = {
 					).innerHTML = `<div class="game-letter" id="letter-${i}">${letter}</div>`;
 				}
 			}
-			// Update status message
+			// Update game state
+			guessedArr.push(letter);
 			gameState.correctGuesses += count;
-			gameStatusMessage.innerHTML = `<h3 id="status-message">There's ${count} '${letter}'${count > 1
-				? 's!'
-				: '!'} Good job!</h3>`;
+			gameStatusMessage.innerHTML = `<h3 id="status-message">There ${count > 1
+				? 'are'
+				: 'is'} ${count} '${letter}'${count > 1 ? 's!' : '!'} Good job!</h3>`;
 		}
 	}
 };
@@ -76,6 +84,7 @@ guessButton.addEventListener('click', (e) => {
 	e.preventDefault();
 	console.log(guessText.value.toUpperCase());
 	gameController.checkGuess(guessText.value.toUpperCase());
+	guessText.value = '';
 });
 
 gameController.startGame();
