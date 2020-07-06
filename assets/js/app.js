@@ -1,6 +1,8 @@
 const words = [ 'Oliver', 'Clementine', 'Bear', 'Beats', 'Bottle', 'Peach', 'Rabbit', 'Bat' ],
 	gameGraphicDOM = document.querySelector('.game-graphic'),
 	gameWordDOM = document.querySelector('.game-word'),
+	guessedLettersDOM = document.getElementById('guessed-letters-list'),
+	guessForm = document.getElementById('guess-form'),
 	guessText = document.getElementById('guess-text'),
 	guessButton = document.getElementById('guess-button'),
 	gameStatusMessage = document.getElementById('status-message');
@@ -27,8 +29,10 @@ const gameController = {
 		console.log(`Word set to ${gameState.word}`);
 	},
 	checkForGameOver: () => {
+		// TODO: render word upon loss
 		if (gameState.remainingGuesses === 0) {
-			gameStatusMessage.innerHTML = `Oh no! You lost! BOOOOOOOOO!`;
+			gameStatusMessage.innerHTML = `GAME OVER! BETTER LUCK NEXT TIME!`;
+			guessForm.style.display = 'none';
 			gameState.gameOver = true;
 		}
 	},
@@ -42,6 +46,9 @@ const gameController = {
 	},
 	renderCorrectGuess: (letter, i) => {
 		console.log(letter, i);
+	},
+	renderGuessedLetters: () => {
+		guessedLettersDOM.innerHTML = gameState.guessedLetters;
 	},
 	checkGuess(letter) {
 		const guessedArr = gameState.guessedLetters;
@@ -57,6 +64,7 @@ const gameController = {
 			// Update status message, decrement remaining guesses, check for game over
 			gameStatusMessage.innerHTML = `Sorry! There was no '${letter}' in the word. Try again!`;
 			gameState.remainingGuesses--;
+			this.renderGuessedLetters();
 			this.checkForGameOver();
 		} else {
 			let count = 0;
@@ -64,7 +72,6 @@ const gameController = {
 				if (wordArr[i] === letter) {
 					count++;
 					// Render correctly guessed letter in DOM
-					console.log(`Found a ${letter} at position ${i}.`);
 					document.getElementById(
 						`letter-${i}`
 					).innerHTML = `<div class="game-letter" id="letter-${i}">${letter}</div>`;
@@ -76,9 +83,21 @@ const gameController = {
 			gameStatusMessage.innerHTML = `<h3 id="status-message">There ${count > 1
 				? 'are'
 				: 'is'} ${count} '${letter}'${count > 1 ? 's!' : '!'} Good job!</h3>`;
+			this.renderGuessedLetters();
 		}
 	}
 };
+
+// TODO: disable button if input less than or greater than 1
+guessText.addEventListener('keyup', () => {
+	if (guessText.value.length !== 1) {
+		console.log(guessButton, 'DISABLING');
+		guessButton.disabled = true;
+	} else {
+		console.log(guessButton, 'ENABLING');
+		guessButton.disabled = false;
+	}
+});
 
 guessButton.addEventListener('click', (e) => {
 	e.preventDefault();
