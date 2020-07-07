@@ -1,5 +1,6 @@
-const words = [ 'Oliver', 'Clementine', 'Bear', 'Beats', 'Bottle', 'Peach', 'Rabbit', 'Bat' ],
-	gameGraphicDOM = document.querySelector('.game-graphic'),
+import { words } from './word-array.js';
+
+const gameGraphicDOM = document.querySelector('.game-graphic'),
 	gameWordDOM = document.querySelector('.game-word'),
 	guessedLettersDOM = document.getElementById('guessed-letters-list'),
 	guessForm = document.getElementById('guess-form'),
