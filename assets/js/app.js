@@ -44,7 +44,9 @@ const gameController = {
 	renderWordDOM: (word) => {
 		for (let i = 0; i < word.length; i++) {
 			const letterSpace = document.createElement('div');
-			letterSpace.innerHTML = `<div class="game-letter" id="letter-${i}">_</div>`;
+			letterSpace.setAttribute('class', 'game-letter');
+			letterSpace.setAttribute('id', `letter-${i}`);
+			letterSpace.innerHTML = '_';
 			gameState.wordLetters.push(word[i].toUpperCase());
 			gameWordDOM.appendChild(letterSpace);
 		}
