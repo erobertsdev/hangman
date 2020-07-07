@@ -1,10 +1,8 @@
 import { words } from './word-array.js';
 
-const gameGraphicDOM = document.querySelector('.game-graphic'),
-	gameWordDOM = document.querySelector('.game-word'),
+const gameWordDOM = document.querySelector('.game-word'),
 	guessedLettersDOM = document.getElementById('guessed-letters-list'),
 	remainingGuessesDOM = document.getElementById('game-remaining-guesses'),
-	guessForm = document.getElementById('guess-form'),
 	guessText = document.getElementById('guess-text'),
 	guessButton = document.getElementById('guess-button'),
 	gameStatusMessage = document.getElementById('status-message');
@@ -106,7 +104,7 @@ const gameController = {
 
 // TODO: disable button if input less than or greater than 1
 guessText.addEventListener('keyup', () => {
-	if (guessText.value.length !== 1) {
+	if (guessText.value.length !== 1 || !guessText.value.match(/[a-zA-Z]/i)) {
 		guessButton.disabled = true;
 	} else {
 		guessButton.disabled = false;
