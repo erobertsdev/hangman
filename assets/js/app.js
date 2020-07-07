@@ -3,6 +3,7 @@ import { words } from './word-array.js';
 const gameGraphicDOM = document.querySelector('.game-graphic'),
 	gameWordDOM = document.querySelector('.game-word'),
 	guessedLettersDOM = document.getElementById('guessed-letters-list'),
+	remainingGuessesDOM = document.getElementById('game-remaining-guesses'),
 	guessForm = document.getElementById('guess-form'),
 	guessText = document.getElementById('guess-text'),
 	guessButton = document.getElementById('guess-button'),
@@ -37,7 +38,7 @@ const gameController = {
 			gameState.gameOver = true;
 		}
 		if (gameState.remainingGuesses === 0) {
-			gameStatusMessage.innerHTML = `GAME OVER! BETTER LUCK NEXT TIME!`;
+			gameStatusMessage.innerHTML = `Game over! The word was: <p class="word-final">${gameState.word.toUpperCase()}</p>`;
 			guessForm.style.display = 'none';
 			gameState.gameOver = true;
 		}
@@ -70,8 +71,10 @@ const gameController = {
 		if (!wordArr.includes(letter)) {
 			guessedArr.push(letter);
 			// Update status message, decrement remaining guesses, check for game over
+
 			gameStatusMessage.innerHTML = `Sorry! There was no '${letter}' in the word. Try again!`;
 			gameState.remainingGuesses--;
+			remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
 			this.renderGuessedLetters();
 			this.checkForGameOver();
 		} else {
@@ -91,6 +94,7 @@ const gameController = {
 			gameStatusMessage.innerHTML = `<h3 id="status-message">There ${count > 1
 				? 'are'
 				: 'is'} ${count} '${letter}'${count > 1 ? 's!' : '!'} Good job!</h3>`;
+			remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
 			this.renderGuessedLetters();
 			this.checkForGameOver();
 		}
