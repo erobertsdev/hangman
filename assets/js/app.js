@@ -24,22 +24,28 @@ const gameController = {
 		return arr[idx];
 	},
 	startGame() {
+		gameWordDOM.innerHTML = '';
 		gameState.word = this.setGameWord(words);
 		this.renderWordDOM(gameState.word);
-		gameState.remainingGuesses = 6;
 		gameState.gameOver = false;
-		console.log(`Word set to ${gameState.word}`);
+		guessButton.disabled = true;
+		guessButton.innerText = 'GUESS LETTER';
+		guessText.classList.remove('hide');
+		gameStatusMessage.innerHTML = `Enter a letter to make a guess!`;
+		console.log(gameState);
 	},
 	checkForGameOver: () => {
 		// TODO: render word upon loss
 		if (gameState.correctGuesses === gameState.wordLetters.length) {
 			gameStatusMessage.innerHTML = `Congratulations! You win!`;
-			guessForm.style.display = 'none';
+			guessText.classList.add('hide');
+			guessButton.innerText = 'PLAY AGAIN';
 			gameState.gameOver = true;
 		}
 		if (gameState.remainingGuesses === 0) {
 			gameStatusMessage.innerHTML = `Game over! The word was: <p class="word-final">${gameState.word.toUpperCase()}</p>`;
-			guessForm.style.display = 'none';
+			guessText.classList.add('hide');
+			guessButton.innerText = 'PLAY AGAIN';
 			gameState.gameOver = true;
 		}
 	},
@@ -53,11 +59,8 @@ const gameController = {
 			gameWordDOM.appendChild(letterSpace);
 		}
 	},
-	renderCorrectGuess: (letter, i) => {
-		console.log(letter, i);
-	},
 	renderGuessedLetters: () => {
-		guessedLettersDOM.innerHTML = gameState.guessedLetters;
+		guessedLettersDOM.innerHTML = `Guessed Letters: ${gameState.guessedLetters}`;
 	},
 	checkGuess(letter) {
 		const guessedArr = gameState.guessedLetters;
@@ -104,20 +107,20 @@ const gameController = {
 // TODO: disable button if input less than or greater than 1
 guessText.addEventListener('keyup', () => {
 	if (guessText.value.length !== 1) {
-		console.log(guessButton, 'DISABLING');
 		guessButton.disabled = true;
 	} else {
-		console.log(guessButton, 'ENABLING');
 		guessButton.disabled = false;
 	}
 });
 
 guessButton.addEventListener('click', (e) => {
 	e.preventDefault();
-	console.log(guessText.value.toUpperCase());
-	gameController.checkGuess(guessText.value.toUpperCase());
-	guessText.value = '';
+	if (guessButton.innerText === 'PLAY AGAIN') {
+		location.reload();
+	} else if (gameState.gameOver === true) {
+		gameController.startGame();
+	} else {
+		gameController.checkGuess(guessText.value.toUpperCase());
+		guessText.value = '';
+	}
 });
-
-gameController.startGame();
-console.log(gameState);

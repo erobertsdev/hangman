@@ -6,3 +6,7 @@
 .game-letter {
 	display: inline;
 }
+
+.hide {
+	display: none;
+}
