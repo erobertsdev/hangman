@@ -30,6 +30,11 @@ const gameController = {
 	},
 	checkForGameOver: () => {
 		// TODO: render word upon loss
+		if (gameState.correctGuesses === gameState.wordLetters.length) {
+			gameStatusMessage.innerHTML = `Congratulations! You win!`;
+			guessForm.style.display = 'none';
+			gameState.gameOver = true;
+		}
 		if (gameState.remainingGuesses === 0) {
 			gameStatusMessage.innerHTML = `GAME OVER! BETTER LUCK NEXT TIME!`;
 			guessForm.style.display = 'none';
@@ -84,6 +89,7 @@ const gameController = {
 				? 'are'
 				: 'is'} ${count} '${letter}'${count > 1 ? 's!' : '!'} Good job!</h3>`;
 			this.renderGuessedLetters();
+			this.checkForGameOver();
 		}
 	}
 };
