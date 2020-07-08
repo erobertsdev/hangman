@@ -4,6 +4,7 @@ import { drawMan } from './graphics.js';
 const gameWordDOM = document.querySelector('.game-word'),
 	guessedLettersDOM = document.getElementById('guessed-letters-list'),
 	remainingGuessesDOM = document.getElementById('game-remaining-guesses'),
+	gameGraphicDOM = document.querySelector('.game-graphic'),
 	guessText = document.getElementById('guess-text'),
 	guessButton = document.getElementById('guess-button'),
 	gameStatusMessage = document.getElementById('status-message');
@@ -30,8 +31,9 @@ const gameController = {
 		guessButton.disabled = true;
 		guessButton.innerText = 'GUESS LETTER';
 		guessText.classList.remove('hide');
+		remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
 		gameStatusMessage.innerHTML = `Enter a letter to make a guess!`;
-		console.log(gameState);
+		gameGraphicDOM.style.height = '400px';
 	},
 	checkForGameOver: () => {
 		if (gameState.correctGuesses === gameState.wordLetters.length) {
@@ -58,6 +60,7 @@ const gameController = {
 		}
 	},
 	renderGuessedLetters: () => {
+		guessedLettersDOM.classList.remove('hide');
 		guessedLettersDOM.innerHTML = `Guessed Letters: ${gameState.guessedLetters}`;
 	},
 	checkGuess(letter) {
@@ -72,7 +75,6 @@ const gameController = {
 		if (!wordArr.includes(letter)) {
 			guessedArr.push(letter);
 			// Update status message, decrement remaining guesses, check for game over
-
 			gameStatusMessage.innerHTML = `Sorry! There was no '${letter}' in the word. Try again!`;
 			gameState.remainingGuesses--;
 			remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
@@ -105,8 +107,10 @@ const gameController = {
 
 guessText.addEventListener('keyup', () => {
 	if (guessText.value.length !== 1 || !guessText.value.match(/[a-zA-Z]/i)) {
+		guessText.value = guessText.value.slice(0, 1).toUpperCase();
 		guessButton.disabled = true;
 	} else {
+		guessText.value = guessText.value.toUpperCase();
 		guessButton.disabled = false;
 	}
 });
