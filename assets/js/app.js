@@ -49,7 +49,7 @@ const gameController = {
 	},
 	renderWordDOM: (word) => {
 		for (let i = 0; i < word.length; i++) {
-			const letterSpace = document.createElement('div');
+			const letterSpace = document.createElement('span');
 			letterSpace.setAttribute('class', 'game-letter');
 			letterSpace.setAttribute('id', `letter-${i}`);
 			letterSpace.innerHTML = '_';
@@ -87,7 +87,7 @@ const gameController = {
 					// Render correctly guessed letter in DOM
 					document.getElementById(
 						`letter-${i}`
-					).innerHTML = `<div class="game-letter" id="letter-${i}">${letter}</div>`;
+					).innerHTML = `<span class="game-letter" id="letter-${i}">${letter}</span>`;
 				}
 			}
 			// Update game state
