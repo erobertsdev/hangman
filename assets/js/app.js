@@ -39,6 +39,7 @@ const gameController = {
 		if (gameState.correctGuesses === gameState.wordLetters.length) {
 			gameStatusMessage.innerHTML = `Congratulations! You win!`;
 			guessText.classList.add('hide');
+			gameGraphicDOM.style.height = '0px';
 			guessButton.innerText = 'PLAY AGAIN';
 			gameState.gameOver = true;
 		}
