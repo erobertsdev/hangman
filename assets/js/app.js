@@ -1,4 +1,5 @@
 import { words } from './word-array.js';
+import { drawMan } from './graphics.js';
 
 const gameWordDOM = document.querySelector('.game-word'),
 	guessedLettersDOM = document.getElementById('guessed-letters-list'),
@@ -33,7 +34,6 @@ const gameController = {
 		console.log(gameState);
 	},
 	checkForGameOver: () => {
-		// TODO: render word upon loss
 		if (gameState.correctGuesses === gameState.wordLetters.length) {
 			gameStatusMessage.innerHTML = `Congratulations! You win!`;
 			guessText.classList.add('hide');
@@ -76,6 +76,7 @@ const gameController = {
 			gameStatusMessage.innerHTML = `Sorry! There was no '${letter}' in the word. Try again!`;
 			gameState.remainingGuesses--;
 			remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
+			drawMan(gameState.remainingGuesses);
 			this.renderGuessedLetters();
 			this.checkForGameOver();
 		} else {
@@ -102,7 +103,6 @@ const gameController = {
 	}
 };
 
-// TODO: disable button if input less than or greater than 1
 guessText.addEventListener('keyup', () => {
 	if (guessText.value.length !== 1 || !guessText.value.match(/[a-zA-Z]/i)) {
 		guessButton.disabled = true;
