@@ -113,7 +113,6 @@ body {
 
 .game-graphic {
 	align-content: center;
-	height: 0px;
 	transition: all .5s;
 	filter: drop-shadow(2px 2px 4px black);
 }
@@ -219,8 +218,16 @@ i:hover {
 		font-size: .8rem;
 	}
 
+	.word-final {
+		font-size: 1rem;
+	}
+
 	.game-letter {
 		font-size: 1.8rem;
+	}
+
+	.game-graphic {
+		max-height: 230px;
 	}
 
 	#guessed-letters-list {
@@ -262,5 +269,67 @@ i:hover {
 
 	i {
 		font-size: 3rem;
+	}
+
+	#head {
+		margin: 20px auto 0px auto;
+		width: 60px;
+		height: 60px;
+		background: dodgerblue;
+		border-radius: 50%;
+		transition: all 1s;
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	#torso {
+		margin: 0 auto;
+		width: 15px;
+		height: 100px;
+		background: dodgerblue;
+		transition: all 1s;
+		opacity: 0;
+	}
+
+	#left-arm {
+		margin: 0 auto;
+		width: 15px;
+		height: 80px;
+		background: dodgerblue;
+		transform: rotate(-50deg) translate(100px, -90px);
+		transform-origin: bottom right;
+		transition: all 1s;
+		opacity: 0;
+	}
+
+	#right-arm {
+		margin: 0 auto;
+		width: 15px;
+		height: 80px;
+		background: dodgerblue;
+		transform: rotate(50deg) translate(-160px, -140px);
+		transform-origin: bottom left;
+		transition: all 1s;
+		opacity: 0;
+	}
+
+	#left-leg {
+		margin: 0 auto;
+		width: 15px;
+		height: 80px;
+		background: dodgerblue;
+		transform: rotate(50deg) translate(-160px, -95px);
+		transition: all 1s;
+		opacity: 0;
+	}
+
+	#right-leg {
+		margin: 0 auto;
+		width: 15px;
+		height: 80px;
+		background: dodgerblue;
+		transform: rotate(-50deg) translate(220px, -145px);
+		transition: all 1s;
+		opacity: 0;
 	}
 }
