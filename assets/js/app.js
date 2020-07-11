@@ -33,7 +33,7 @@ const gameController = {
 		guessText.classList.remove('hide');
 		remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
 		gameStatusMessage.innerHTML = `Enter a letter to make a guess!`;
-		// gameGraphicDOM.style.height = '400px';
+		gameGraphicDOM.classList.remove('no-height');
 		console.log(gameState.word);
 	},
 	checkForGameOver: () => {
