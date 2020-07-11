@@ -111,6 +111,7 @@ body {
 	align-content: center;
 	height: 0px;
 	transition: all .5s;
+	filter: drop-shadow(2px 2px 4px black);
 }
 
 #head {
