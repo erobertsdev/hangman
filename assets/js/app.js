@@ -34,6 +34,7 @@ const gameController = {
 		remainingGuessesDOM.innerHTML = `Remaining guesses: ${gameState.remainingGuesses}`;
 		gameStatusMessage.innerHTML = `Enter a letter to make a guess!`;
 		gameGraphicDOM.style.height = '400px';
+		console.log(gameState.word);
 	},
 	checkForGameOver: () => {
 		if (gameState.correctGuesses === gameState.wordLetters.length) {
@@ -62,7 +63,7 @@ const gameController = {
 	},
 	renderGuessedLetters: () => {
 		guessedLettersDOM.classList.remove('hide');
-		guessedLettersDOM.innerHTML = `Guessed Letters: ${gameState.guessedLetters}`;
+		guessedLettersDOM.innerHTML = `Guessed: ${gameState.guessedLetters}`;
 	},
 	checkGuess(letter) {
 		const guessedArr = gameState.guessedLetters;

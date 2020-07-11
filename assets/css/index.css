@@ -205,3 +205,62 @@ i:hover {
 		opacity: 1;
 	}
 }
+
+@media all and (max-width: 750px) {
+	.title-main {
+		font-size: 11vw;
+	}
+
+	#game-remaining-guesses {
+		font-size: 1.2rem;
+	}
+
+	.game-status {
+		font-size: .8rem;
+	}
+
+	.game-letter {
+		font-size: 1.8rem;
+	}
+
+	#guessed-letters-list {
+		font-size: 1.2rem;
+	}
+
+	#guess-text {
+		background-color: lightgray;
+		border: 2px solid dodgerblue;
+		margin: 10px;
+		text-align: center;
+		height: 50px;
+		width: 50px;
+		font-size: 3rem;
+		filter: drop-shadow(2px 2px 4px black);
+	}
+
+	#guess-button {
+		border-radius: 15px;
+		font-size: 1rem;
+		outline: none;
+		border: none;
+		font-weight: bold;
+		height: 50px;
+		padding: 3px 15px 3px 15px;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		transform: translateY(-10px);
+	}
+
+	#guess-button:hover {
+		cursor: pointer;
+		background-color: dodgerblue;
+		border: 2px solid lightgray;
+		transform: translateY(-15px);
+		filter: drop-shadow(4px 4px 8px black);
+		transition: all .3s;
+	}
+
+	i {
+		font-size: 3rem;
+	}
+}
