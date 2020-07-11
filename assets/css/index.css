@@ -22,7 +22,7 @@ body {
 	padding: 10px;
 	border-radius: 15px;
 	border: 2px solid dodgerblue;
-	background-color: rgba(211, 211, 211, 0.8);
+	background-color: lightgray;
 	width: fit-content;
 	filter: drop-shadow(2px 2px 4px black);
 }
@@ -63,6 +63,7 @@ body {
 	padding: 10px;
 	font-size: 2rem;
 	height: fit-content;
+	width: fit-content;
 	color: dodgerblue;
 	-webkit-text-stroke: 1px black;
 	font-weight: bold;
