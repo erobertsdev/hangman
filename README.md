@@ -4,10 +4,10 @@ Self-explanatory. Built using just the classics:
 
 HTML\
 CSS\
-JavaScript\
+JavaScript
 
 ### Screenshots
 ------------------
-Actual in-game footage.
+Actual in-game footage.\
 ![Descriptive/Alt text here](https://eroberts.dev/hangman/assets/img/hangman-preview.jpg)\
 Enjoy!
