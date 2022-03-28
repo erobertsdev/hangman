@@ -107,10 +107,8 @@ const gameController = {
 
 guessText.addEventListener('keyup', () => {
 	if (guessText.value.length !== 1 || !guessText.value.match(/[a-zA-Z]/i)) {
-		guessText.value = guessText.value.slice(0, 1).toUpperCase();
 		guessButton.disabled = true;
 	} else {
-		guessText.value = guessText.value.toUpperCase();
 		guessButton.disabled = false;
 	}
 });
