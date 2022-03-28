@@ -28,7 +28,8 @@ body {
 }
 
 #status-message {
-	margin-bottom: 10px;
+	font-family: 'Bangers', cursive;
+	letter-spacing: 3px;
 }
 
 #game-remaining-guesses {
@@ -87,8 +88,10 @@ body {
 }
 
 #guess-button {
+	font-family: 'Bangers', cursive;
+	letter-spacing: 2px;
 	border-radius: 15px;
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 	outline: none;
 	border: none;
 	font-weight: bold;
