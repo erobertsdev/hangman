@@ -115,6 +115,7 @@ guessText.addEventListener('keyup', () => {
 
 guessButton.addEventListener('click', (e) => {
 	e.preventDefault();
+	guessText.focus();
 	if (guessButton.innerText === 'PLAY AGAIN') {
 		location.reload();
 	} else if (gameState.gameOver === true) {
